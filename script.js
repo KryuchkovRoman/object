@@ -1,18 +1,28 @@
-let a=document.querySelector('#inp1').value;
-let b=document.querySelector('#inp2').value;
-let button1=document.querySelector('#btn1');
-let txt=document.querySelector('#txt1');
-
-button1.addEventListener("click", () =>{
-  c=Number(a)+Number(b);
-  txt.innerHTML="Результат:"+(c);
-})
-
-let button2=document.querySelector('#btn2');
-button2.addEventListener('click', addCircle);
-
-function addcircle() {
-  let newCircle=document.createElement('div');
-  tsk2.appendchild(newCircle);
-  newCircle.classList.add('circle');
+class Component {
+    constructor(selector) {
+        this.$el = document.querySelector(selector);
+    }
+    blockHide() {
+        this.$el.style.display = 'none';
+    }
+    editColor(color) {
+        this.$el.style.background = color;
+    }
 }
+
+class Box extends Component {
+    constructor(options) {
+        super(options.selector);
+        this.$el.style.width = options.width + 'px';
+        this.$el.style.height = options.height + 'px';
+        this.$el.style.background = options.color;
+    }
+}
+
+const box1 = new Box({
+    selector: '#box1',
+    width: 1000,
+    height: 50,
+    color: 'blue'
+});
+
